@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="/sbadmin2/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <link href="/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -46,23 +48,23 @@
                 Menu
             </div>
 
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/kategori">
+            <li class="nav-item {{ request()->is('categories*') ? 'active' : '' }} ">
+                <a class="nav-link" href="/categories">
                     <i class="fas fa-fw fa-sitemap"></i>
                     <span>Data Kategori</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/distributor">
+            <li class="nav-item {{ request()->is('distributors*') ? 'active' : '' }}">
+                <a class="nav-link" href="/distributors">
                     <i class="fas fa-fw fa-car"></i>
                     <span>Data Distributor</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/barang">
+            <li class="nav-item {{ request()->is('items*') ? 'active' : '' }}">
+                <a class="nav-link" href="/items">
                     <i class="fas fa-fw fa-dolly"></i>
                     <span>Data Barang</span></a>
             </li>
@@ -116,7 +118,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="/profile" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name
+                                    }}</span>
                                 <img class="img-profile rounded-circle" src="/sbadmin2/img/undraw_profile.svg">
                             </a>
                         </li>
@@ -185,6 +188,18 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/sbadmin2/js/sb-admin-2.min.js"></script>
+
+
+    <script src="/sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(function(){
+
+            $('.datatable').DataTable();
+
+        });
+    </script>
 
 </body>
 
