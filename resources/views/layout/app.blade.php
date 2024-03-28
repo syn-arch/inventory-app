@@ -68,7 +68,7 @@
                     <i class="fas fa-fw fa-dolly"></i>
                     <span>Data Barang</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is('laporan*') ? 'active' : '' }}">
                 <a class="nav-link" href="/laporan">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Laporan</span></a>
@@ -200,6 +200,8 @@
 
         });
     </script>
+
+    @stack('js')
 
 </body>
 
