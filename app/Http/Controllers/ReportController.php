@@ -123,6 +123,12 @@ class ReportController extends Controller
             }
         }
 
-        return view('reports.cetak_semua', compact('items'));
+        if ($category_id) {
+            $category = Category::find($category_id);
+        }else{
+            $category = null;
+        }
+
+        return view('reports.cetak_semua', compact('items', 'category'));
     }
 }

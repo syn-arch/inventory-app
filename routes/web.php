@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/laporan', [ReportController::class, 'index'])->name('laporan');
     Route::get('/laporan/semua', [ReportController::class, 'semua']);
     Route::get('/laporan/cetak_semua', [ReportController::class, 'cetak_semua']);
+
+    Route::get('/pengaturan', [PengaturanController::class, 'index']);
+    Route::put('/update_username', [PengaturanController::class, 'update_username']);
+    Route::put('/update_password', [PengaturanController::class, 'update_password']);
 });

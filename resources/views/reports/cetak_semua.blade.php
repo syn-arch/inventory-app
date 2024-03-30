@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cetak Semua Laporan</title>
+    <title>Cetak {{$category->nama ?? 'Semua'}} Laporan</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -25,7 +25,9 @@
 </head>
 
 <body onload="window.print()">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <h1 class="text-center">Laporan {{$category->nama ?? 'Semua'}}</h1>
+    <h4 class="text-center">Dicetak Oleh : {{auth()->user()->name}}</h4>
+    <table class="table table-bordered mt-3" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>No</th>

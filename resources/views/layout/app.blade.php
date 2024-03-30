@@ -73,7 +73,7 @@
                     <i class="fas fa-fw fa-book"></i>
                     <span>Laporan</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is('pengaturan*') ? 'active' : '' }}">
                 <a class="nav-link" href="/pengaturan">
                     <i class="fas fa-fw fa-cogs"></i>
                     <span>Pengaturan</span></a>
@@ -192,6 +192,8 @@
 
     <script src="/sbadmin2/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/sbadmin2/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="/sbadmin2/vendor/chart.js/Chart.min.js"></script>
 
     <script>
         $(function(){
