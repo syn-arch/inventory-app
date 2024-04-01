@@ -114,7 +114,7 @@
                         <tbody>
                             @php
                             $items = DB::table('items')
-                            ->select('categories.nama', 'items.stok_akhir')
+                            ->select('categories.nama', 'items.kuantitas')
                             ->join('categories', 'items.category_id', '=', 'categories.id')
                             ->groupBy('categories.id')
                             ->orderBy('items.id', 'DESC')
@@ -125,7 +125,7 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$item->nama}}</td>
-                                <td>{{$item->stok_akhir}}</td>
+                                <td>{{$item->kuantitas}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -152,7 +152,7 @@
                         <tbody>
                             @php
                             $items = DB::table('items')
-                            ->select('categories.nama', 'items.stok_akhir')
+                            ->select('categories.nama', 'items.kuantitas')
                             ->join('categories', 'items.category_id', '=', 'categories.id')
                             ->groupBy('categories.id')
                             ->orderBy('items.id', 'DESC')
@@ -165,7 +165,7 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$item->nama}}</td>
-                                <td>{{$item->stok_akhir}}</td>
+                                <td>{{$item->kuantitas}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -192,7 +192,7 @@
                         <tbody>
                             @php
                             $items = DB::table('items')
-                            ->select('categories.nama', 'items.stok_akhir')
+                            ->select('categories.nama', 'items.kuantitas')
                             ->join('categories', 'items.category_id', '=', 'categories.id')
                             ->groupBy('categories.id')
                             ->orderBy('items.id', 'DESC')
@@ -205,7 +205,7 @@
                             <tr>
                                 <td>{{$index+1}}</td>
                                 <td>{{$item->nama}}</td>
-                                <td>{{$item->stok_akhir}}</td>
+                                <td>{{$item->kuantitas}}</td>
                             </tr>
                             @endforeach
                         </tbody>

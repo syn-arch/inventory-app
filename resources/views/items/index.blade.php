@@ -29,10 +29,9 @@
                         <th>Distributor</th>
                         <th>Tipe</th>
                         <th>Jumlah</th>
-                        <th>Stok Awal</th>
-                        <th>Stok Akhir</th>
                         <th>Ditambahkan Oleh</th>
-                        <th>Tanggal</th>
+                        <th>Tanggal Input</th>
+                        <th>Tanggal Expired</th>
                         <th><i class="fas fa-cogs"></i></th>
                     </tr>
                 </thead>
@@ -45,10 +44,9 @@
                         <td>{{$item->distributor->nama ?? '-'}}</td>
                         <td>{{$item->tipe}}</td>
                         <td>{{$item->kuantitas}}</td>
-                        <td>{{$item->stok_awal}}</td>
-                        <td>{{$item->stok_akhir}}</td>
                         <td>{{$item->user->name}}</td>
                         <td>{{ date('d-m-Y', strtotime($item->created_at))}}</td>
+                        <td>{{ date('d-m-Y', strtotime($item->expired_barang))}}</td>
                         <td>
                             <div class="d-flex">
                                 <a href="{{route('items.edit', $item->id)}}" class="btn btn-warning mr-2"><i

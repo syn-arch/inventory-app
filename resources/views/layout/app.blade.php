@@ -43,7 +43,6 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
                 Menu
             </div>
@@ -52,6 +51,12 @@
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
+            </li>
+            @if (auth()->user()->level == 'admin')
+            <li class="nav-item {{ request()->is('users*') ? 'active' : '' }} ">
+                <a class="nav-link" href="/users">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Data User</span></a>
             </li>
             <li class="nav-item {{ request()->is('categories*') ? 'active' : '' }} ">
                 <a class="nav-link" href="/categories">
@@ -68,6 +73,7 @@
                     <i class="fas fa-fw fa-dolly"></i>
                     <span>Data Barang</span></a>
             </li>
+            @endif
             <li class="nav-item {{ request()->is('laporan*') ? 'active' : '' }}">
                 <a class="nav-link" href="/laporan">
                     <i class="fas fa-fw fa-book"></i>
@@ -75,8 +81,8 @@
             </li>
             <li class="nav-item {{ request()->is('pengaturan*') ? 'active' : '' }}">
                 <a class="nav-link" href="/pengaturan">
-                    <i class="fas fa-fw fa-cogs"></i>
-                    <span>Pengaturan</span></a>
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Profil</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">
@@ -116,16 +122,13 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="/profile" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="/pengaturan">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name
                                     }}</span>
-                                <img class="img-profile rounded-circle" src="/sbadmin2/img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="/user_images/{{ Auth::user()->foto }}">
                             </a>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
 

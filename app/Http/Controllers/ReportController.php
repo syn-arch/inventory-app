@@ -33,9 +33,17 @@ class ReportController extends Controller
             $distributor_id = request('distributor_id');
             $category_id = request('category_id');
 
+            if (!$distributor_id) {
+                $distributor_id = 'semua';
+            }
+
+            if (!$category_id) {
+                $category_id = 'semua';
+            }
+
             // "SELECT * FROM items WHERE created_at BETWEEN '$dari' AND '$sampai' AND tipe = '$tipe' AND distributor_id = '$distributor_id'";
 
-            if ($category_id) {
+            if ($category_id != 'semua') {
                 if ($tipe == 'semua' && $distributor_id == 'semua') {
                     $items = Item::whereRaw("DATE(created_at) >= '$dari' ")
                         ->whereRaw("DATE(created_at) <= '$sampai' ")
@@ -55,6 +63,7 @@ class ReportController extends Controller
                         ->get();
                 }
             } else {
+
                 if ($tipe == 'semua' && $distributor_id == 'semua') {
                     $items = Item::whereRaw("DATE(created_at) >= '$dari' ")
                         ->whereRaw("DATE(created_at) <= '$sampai' ")
@@ -73,7 +82,9 @@ class ReportController extends Controller
             }
         }
 
-        return view('reports.semua', compact('items', 'distributors'));
+        $category = Category::find($category_id);
+
+        return view('reports.semua', compact('items', 'distributors', 'category'));
     }
 
     public function cetak_semua()
@@ -84,9 +95,17 @@ class ReportController extends Controller
         $distributor_id = request('distributor_id');
         $category_id = request('category_id');
 
+        if (!$distributor_id) {
+            $distributor_id = 'semua';
+        }
+
+        if (!$category_id) {
+            $category_id = 'semua';
+        }
+
         // "SELECT * FROM items WHERE created_at BETWEEN '$dari' AND '$sampai' AND tipe = '$tipe' AND distributor_id = '$distributor_id'";
 
-        if ($category_id) {
+        if ($category_id != 'semua') {
             if ($tipe == 'semua' && $distributor_id == 'semua') {
                 $items = Item::whereRaw("DATE(created_at) >= '$dari' ")
                     ->whereRaw("DATE(created_at) <= '$sampai' ")
@@ -125,7 +144,7 @@ class ReportController extends Controller
 
         if ($category_id) {
             $category = Category::find($category_id);
-        }else{
+        } else {
             $category = null;
         }
 

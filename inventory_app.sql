@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 25, 2024 at 05:07 AM
+-- Generation Time: Apr 01, 2024 at 09:25 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -40,8 +40,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `kode`, `nama`, `created_at`, `updated_at`) VALUES
-(5, 'K200', 'Keikan 200ml', '2024-03-24 20:08:14', '2024-03-24 20:08:14'),
-(6, 'D220', 'Deas 220ml', '2024-03-24 20:08:23', '2024-03-24 20:08:23');
+(6, 'D220', 'Deas 220ml', '2024-03-24 20:08:23', '2024-03-24 20:08:23'),
+(8, 'D440', 'Deas 440ml', '2024-03-31 22:41:14', '2024-03-31 22:41:14');
 
 -- --------------------------------------------------------
 
@@ -63,7 +63,8 @@ CREATE TABLE `distributors` (
 --
 
 INSERT INTO `distributors` (`id`, `nama`, `alamat`, `nomor_telepon`, `created_at`, `updated_at`) VALUES
-(1, 'Minus debitis accusa', 'Consequatur Non del', 'Pariatur Culpa quis', '2024-03-24 20:19:23', '2024-03-24 20:19:23');
+(1, 'Minus debitis accusa', 'Consequatur Non del', 'Pariatur Culpa quis', '2024-03-24 20:19:23', '2024-03-24 20:19:23'),
+(3, 'Aliqua Sunt tenetur', 'Velit laudantium n', 'Qui aliquid sint qui', '2024-03-28 06:00:54', '2024-03-28 06:00:54');
 
 -- --------------------------------------------------------
 
@@ -94,12 +95,20 @@ CREATE TABLE `items` (
   `kuantitas` int(11) NOT NULL,
   `tipe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `expired_barang` date NOT NULL,
-  `stok_awal` int(11) NOT NULL,
-  `stok_akhir` int(11) NOT NULL,
   `ditambahkan_oleh` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `category_id`, `distributor_id`, `kuantitas`, `tipe`, `expired_barang`, `ditambahkan_oleh`, `created_at`, `updated_at`) VALUES
+(8, 6, 1, 50, 'HASIL PRODUKSI', '2024-04-01', 1, '2024-03-31 22:41:21', '2024-03-31 22:41:54'),
+(9, 6, 1, 25, 'BARANG KELUAR', '2024-04-01', 1, '2024-03-31 22:42:06', '2024-03-31 22:42:19'),
+(10, 6, NULL, 50, 'HASIL PRODUKSI', '2024-04-30', 1, '2024-04-01 22:43:02', '2024-03-31 22:43:44'),
+(11, 6, 1, 5, 'HASIL PRODUKSI', '2024-04-30', 1, '2024-04-01 22:44:04', '2024-03-31 22:44:25');
 
 -- --------------------------------------------------------
 
@@ -124,7 +133,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2024_03_25_023449_create_categories_table', 2),
 (6, '2024_03_25_031003_create_distributors_table', 3),
-(9, '2024_03_25_032442_create_items_table', 4);
+(9, '2024_03_25_032442_create_items_table', 4),
+(10, '2024_04_01_045255_add_level_to_users_table', 5);
 
 -- --------------------------------------------------------
 
@@ -168,6 +178,8 @@ CREATE TABLE `users` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -177,9 +189,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin', '$2y$10$DdoV74xoVQicDzNeKpRgs.P8Xsth9hzHSLPZYXJy6o/Pq24oyQCpO', NULL, '2024-03-23 22:12:11', '2024-03-23 22:12:11'),
-(2, 'Administrator', 'milla', '$2y$10$2Vjz3j89efQf8kGopqt3l.dMiDUZIX9d3aR7x1sipxErrA/3b24fC', NULL, '2024-03-23 22:15:16', '2024-03-23 22:15:16');
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `level`, `foto`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'admin', '$2y$10$JwdEHr3LnKhbl.XnCmLp6uQTNMq7Bt5IZSV7Bv4TuTZJa5qnOFG1S', 'admin', '17119529679.jpeg', NULL, '2024-03-23 22:12:11', '2024-03-31 23:29:27'),
+(2, 'Milla', 'milla', '$2y$10$2Vjz3j89efQf8kGopqt3l.dMiDUZIX9d3aR7x1sipxErrA/3b24fC', 'owner', '17119526303.jpeg', NULL, '2024-03-23 22:15:16', '2024-03-31 23:23:50'),
+(3, 'Owner', 'owner', '$2y$10$JE1HD6eYMKD69H/43c87SurZJ/gpcGR.Zg10qdYIV5RrpXuEgA8IS', 'owner', '17119526364.jpeg', NULL, '2024-03-31 22:09:58', '2024-03-31 23:23:56'),
+(4, 'tes', 'tes', '$2y$10$Fr9wyrr6rHslKH4I1NU8iuCJ7/8UaIb2FhlnE5hoeSNL1NtLiccNi', 'admin', '17119526454.jpeg', NULL, '2024-03-31 23:17:19', '2024-03-31 23:24:05'),
+(5, 'cabepaj', 'kecew', '$2y$10$zcBbPzJ.R08I2Fxoz58XXOKPBqoEyN.gtu68pSSRYbDEPrkVvMOW.', 'owner', '17119526529.jpeg', NULL, '2024-03-31 23:17:48', '2024-03-31 23:24:12'),
+(6, 'cuxoxace', 'fatih', '$2y$10$AULBupFlWSSsamZipoHsN.OUveTedcBW/tShOSV0r1L7kmOB2UZBa', 'owner', '17119523028.jpeg', NULL, '2024-03-31 23:18:22', '2024-03-31 23:18:22');
 
 --
 -- Indexes for dumped tables
@@ -246,13 +262,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `distributors`
 --
 ALTER TABLE `distributors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -264,13 +280,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -282,7 +298,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -292,8 +308,8 @@ ALTER TABLE `users`
 -- Constraints for table `items`
 --
 ALTER TABLE `items`
-  ADD CONSTRAINT `items_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `items_distributor_id_foreign` FOREIGN KEY (`distributor_id`) REFERENCES `distributors` (`id`);
+  ADD CONSTRAINT `items_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `items_distributor_id_foreign` FOREIGN KEY (`distributor_id`) REFERENCES `distributors` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

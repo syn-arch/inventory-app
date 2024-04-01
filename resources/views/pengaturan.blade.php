@@ -52,6 +52,28 @@
                     </div>
                 </form>
 
+                <h3 class="mt-5">Update Foto</h3>
+                <form action="/update_foto" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <img src="/user_images/{{Auth::user()->foto}}" alt="" class="img-fluid">
+                            </div>
+                            <div class="mb-4">
+                                <label for="">Foto</label>
+                                <input type="file" class="form-control" name="foto" placeholder="file Lama">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary btn-block">Update</button>
+                        </div>
+                    </div>
+                </form>
+
                 <h3 class="mt-5">Update Password</h3>
                 <form action="/update_password" method="POST">
                     @method('PUT')

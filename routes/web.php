@@ -7,6 +7,7 @@ use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PengaturanController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
         'categories' => CategoryController::class,
         'distributors' => DistributorController::class,
         'items' => ItemController::class,
+        'users' => UserController::class,
     ]);
 
     Route::get('/laporan', [ReportController::class, 'index'])->name('laporan');
@@ -32,4 +34,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/pengaturan', [PengaturanController::class, 'index']);
     Route::put('/update_username', [PengaturanController::class, 'update_username']);
     Route::put('/update_password', [PengaturanController::class, 'update_password']);
+    Route::put('/update_foto', [PengaturanController::class, 'update_foto']);
 });

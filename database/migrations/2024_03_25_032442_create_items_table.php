@@ -18,8 +18,6 @@ return new class extends Migration
             $table->integer('kuantitas');
             $table->string('tipe');
             $table->date('expired_barang');
-            $table->integer('stok_awal');
-            $table->integer('stok_akhir');
             $table->integer('ditambahkan_oleh');
             $table->timestamps();
         });

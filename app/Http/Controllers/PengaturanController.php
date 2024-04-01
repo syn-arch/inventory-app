@@ -26,6 +26,25 @@ class PengaturanController extends Controller
         return redirect('/pengaturan');
     }
 
+    public function update_foto(Request $request)
+    {
+        $request->validate([
+            'foto' => 'required'
+        ]);
+
+        $foto = $request->file('foto');
+        $nama_foto = time() . rand(1, 9) . '.' . $foto->getClientOriginalExtension();
+        $foto->move('user_images', $nama_foto);
+        $data['foto'] = $nama_foto;
+
+        User::find(auth()->user()->id)->update([
+            'foto' => $nama_foto
+        ]);
+
+        session()->flash('message', 'Foto berhasil diubah');
+        return redirect('/pengaturan');
+    }
+
     public function update_password(Request $request)
     {
         $request->validate([
@@ -41,10 +60,9 @@ class PengaturanController extends Controller
             ]);
             session()->flash('message', 'Password berhasil diubah');
             return redirect('/pengaturan');
-        }else{
+        } else {
             session()->flash('error', 'Password lama salah');
             return redirect('/pengaturan');
         }
-
     }
 }

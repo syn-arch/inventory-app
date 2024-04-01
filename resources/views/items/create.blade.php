@@ -49,19 +49,14 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="">Tanggal Input</label>
+                                <input type="datetime-local" class="form-control" value="{{date('Y-m-d H:i:s')}}"
+                                    name="created_at" placeholder="Tanggal Input" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Expired Barang</label>
                                 <input type="date" class="form-control" name="expired_barang"
                                     placeholder="Expired Barang" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Stok Awal</label>
-                                <input type="number" class="form-control" name="stok_awal" placeholder="Stok Awal"
-                                    required>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Stok Akhir</label>
-                                <input type="number" class="form-control" name="stok_akhir" placeholder="Stok Akhir"
-                                    required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-submit btn-block btn-primary">Submit</button>
